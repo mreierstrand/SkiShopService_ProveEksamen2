@@ -39,6 +39,18 @@ namespace SkiShopService
                            opt.UseInMemoryDatabase("TodoList"));
             services.AddControllers();
 
+
+            //Tilføj CORS til LocalHost - når du ikke kan bruge * på Azure
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAnyOrigin", builder => builder.AllowAnyOrigin());
+            //    options.AddPolicy("AllowMyLocalOrigin", builder => builder.WithOrigins("ÆNDR TIL EGEN LOCAL HOST"));
+            //    options.AddPolicy("AllowGetPost", builder => builder.AllowAnyOrigin().WithMethods("GET", "POST"));
+
+            //});
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +67,9 @@ namespace SkiShopService
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Items API v1.0");
                 c.RoutePrefix = "api/help";
             });
+
+            //Tilføj CORS til LocalHost - når du ikke kan bruge * på Azure
+            //app.UseCors("AllowAnyOrigin");
 
 
             app.UseRouting();
