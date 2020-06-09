@@ -48,5 +48,22 @@ namespace SkiShopService.Controllers
         {
             Skis.Add(value);
         }
+
+        // PUT: api/Skis/5
+        [HttpGet]
+        [Route("Price/{LowerPrice}-{UpperPrice}")]
+        public IEnumerable<Ski> GetByPrice(int LowerPrice, int UpperPrice)
+        {
+            List<Ski> result = new List<Ski>();
+            foreach (var v in Skis)
+            {
+                if (v.Price >= LowerPrice && v.Price <= UpperPrice)
+                {
+                    result.Add(v);
+                }
+            }
+            return result;
+        }
+
     }
 }
