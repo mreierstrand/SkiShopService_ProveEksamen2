@@ -49,6 +49,21 @@ namespace SkiShopService.Controllers
             Skis.Add(value);
         }
 
+        //PUT: api/Ski/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] Ski value)
+        {
+            Ski ski = GetId(id);
+            if (ski != null)
+            {
+                ski.Id = value.Id;
+                ski.SkiLength = value.SkiLength;
+                ski.SkiType = value.SkiType;
+                ski.Price = value.Price;
+            }
+        }
+
+
         // PUT: api/Skis/5
         [HttpGet]
         [Route("Price/{LowerPrice}-{UpperPrice}")]
@@ -63,6 +78,14 @@ namespace SkiShopService.Controllers
                 }
             }
             return result;
+        }
+
+        // DELETE: api/Skis/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            Ski ski = GetId(id);
+            Skis.Remove(ski);
         }
 
     }
